@@ -1,18 +1,23 @@
 #include <boost/gil.hpp>
 #include <boost/gil/extension/io/jpeg.hpp>
 
-#include "parser.hh"
+#include "mtl_parser.hh"
 
-void MTLParser::parse_tex_map(const std::string& filename, host_mat_t& m)
+namespace mtlp
 {
-    boost::gil::rgb8_image_t tex;
-    boost::gil::read_image(filename, tex, boost::gil::jpeg_tag());
 
-    m.tex_w = tex.width();
-    m.tex_h = tex.height();
+    void MTLParser::parse_tex_map(const std::string& filename, host_mat_t& m)
+    {
+        boost::gil::rgb8_image_t tex;
+        boost::gil::read_image(filename, tex, boost::gil::jpeg_tag());
 
-    auto v = view(tex);
+        m.tex_w = tex.width();
+        m.tex_h = tex.height();
 
-    for (const auto& pix : v)
-        m.kd_map.push_back({pix[0], pix[1], pix[2]});
+        auto v = view(tex);
+
+        for (const auto& pix : v)
+            m.kd_map.push_back({pix[0], pix[1], pix[2]});
+    }
+
 }

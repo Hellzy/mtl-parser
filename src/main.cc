@@ -1,5 +1,5 @@
 #include <iostream>
-#include "parser.hh"
+#include "mtl_parser.hh"
 
 int main(int argc, char** argv)
 {
@@ -9,6 +9,6 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    MTLParser parser(argv[1]);
+    mtlp::MTLParser parser(argv[1]);
     return 0;
 }

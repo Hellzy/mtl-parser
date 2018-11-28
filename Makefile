@@ -7,7 +7,7 @@ ifdef DEBUG
 endif
 
 CUOBJS=$(addprefix src/, material.o)
-OBJS=$(addprefix src/, parser.o parse_tex_map.o) $(CUOBJS)
+OBJS=$(addprefix src/, mtl_parser.o parse_tex_map.o) $(CUOBJS)
 BIN=main
 LIB=libmtlparser.so
 LDLIBS=-ljpeg -L/opt/cuda/lib64 -lcudart
