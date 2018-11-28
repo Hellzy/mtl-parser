@@ -24,6 +24,7 @@ using host_mat_t = HostMaterial;
 
 struct DeviceMaterial : MaterialSkel
 {
+    DeviceMaterial() = default;
     __host__ DeviceMaterial(const host_mat_t& m);
     __host__ ~DeviceMaterial();
 
