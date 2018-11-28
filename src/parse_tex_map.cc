@@ -3,7 +3,7 @@
 
 #include "parser.hh"
 
-void MTLParser::parse_tex_map(const std::string& filename, material_t& m)
+void MTLParser::parse_tex_map(const std::string& filename, host_mat_t& m)
 {
     boost::gil::rgb8_image_t tex;
     boost::gil::read_image(filename, tex, boost::gil::jpeg_tag());

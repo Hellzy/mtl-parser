@@ -14,9 +14,9 @@ public:
     void load(const std::string& filename);
 
 private:
-    material_t parse_material(std::ifstream& ifs);
-    void parse_tex_map(const std::string& filename, material_t& m);
+    host_mat_t parse_material(std::ifstream& ifs);
+    void parse_tex_map(const std::string& filename, host_mat_t& m);
 
 private:
-    std::map<std::string, material_t> mats_;
+    std::map<std::string, dev_mat_t> mats_;
 };

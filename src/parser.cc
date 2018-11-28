@@ -25,12 +25,12 @@ void MTLParser::load(const std::string& filename)
     }
 }
 
-material_t MTLParser::parse_material(std::ifstream& ifs)
+host_mat_t MTLParser::parse_material(std::ifstream& ifs)
 {
     std::string name;
     ifs >> name;
 
-    Material m;
+    host_mat_t m;
 
     while (ifs.good() && !ifs.eof())
     {
