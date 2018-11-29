@@ -1,6 +1,5 @@
 CXXFLAGS=-std=c++17 -Wall -Wextra -pedantic
 CPPFLAGS=-I/opt/cuda/include
-CUFLAGS= -std=c++14
 
 ifdef DEBUG
 	CXXFLAGS+=-g
@@ -12,11 +11,12 @@ BIN=main
 LIB=libmtlparser.so
 LDLIBS=-ljpeg -L/opt/cuda/lib64 -lcudart
 
-%.o: %.cu
-	nvcc $(CUFLAGS) -o $@ -dc --compiler-options '-fPIC' $<
-
 $(LIB): $(OBJS)
-	$(LINK.cc) -shared -o $@ $^ $(LDLIBS)
+	nvcc --compiler-options '-fPIC' -dlink -o src/link.o $^
+	$(LINK.cc) -shared -o $@ $^ src/link.o $(LDLIBS)
+
+%.o: %.cu
+	nvcc -std=c++14 -dc --compiler-options '-fPIC' -o $@ $<
 
 $(OBJS): CXXFLAGS += -fPIC
 
