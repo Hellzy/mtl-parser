@@ -15,6 +15,7 @@ namespace mtlp
             MTLParser(const std::string& filename);
 
             void load(const std::string& filename);
+            std::map<std::string, dev_mat_t> mats_get() { return mats_; }
 
         private:
             host_mat_t parse_material(std::ifstream& ifs);
