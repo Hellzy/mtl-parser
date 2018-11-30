@@ -23,8 +23,10 @@ namespace mtlp
 
             if (!tok.compare("newmtl"))
                 parse_material(ifs);
+#ifdef DEBUG
             else
                 std::cerr << "Skipping: " << tok << '\n';
+#endif
         }
     }
 
@@ -60,10 +62,12 @@ namespace mtlp
                     ifs.putback(*it);
                 break;
             }
+#ifdef DEBUG
             else
             {
                 std::cerr << "Skipping: " << tok << '\n';
             }
+#endif
         }
 
         mats_[name] = m;
