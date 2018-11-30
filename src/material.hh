@@ -25,7 +25,8 @@ using host_mat_t = HostMaterial;
 struct DeviceMaterial : MaterialSkel
 {
     DeviceMaterial() = default;
-    __host__ DeviceMaterial(const host_mat_t& m);
+    __host__ explicit DeviceMaterial(const host_mat_t& m);
+    __host__ DeviceMaterial& operator=(DeviceMaterial&& m);
     __host__ ~DeviceMaterial();
 
     __device__ vec3_t tex_get(double u, double v) const

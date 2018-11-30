@@ -17,3 +17,16 @@ DeviceMaterial::~DeviceMaterial()
 {
     cudaFree(kd_map);
 }
+
+__host__
+DeviceMaterial& DeviceMaterial::operator=(DeviceMaterial&& m)
+{
+    kd = m.kd;
+    ka = m.kd;
+    tex_w = m.tex_w;
+    tex_h = m.tex_h;
+    kd_map = m.kd_map;
+    m.kd_map = nullptr;
+
+    return *this;
+}
