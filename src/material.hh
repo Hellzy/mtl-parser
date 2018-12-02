@@ -29,27 +29,6 @@ struct DeviceMaterial : MaterialSkel
     __host__ DeviceMaterial& operator=(DeviceMaterial&& m);
     __host__ ~DeviceMaterial();
 
-    __device__ vec3_t tex_get(double u, double v) const
-    {
-        /* Interpolation, here simply getting nearest neighbourg */
-        while (u < 0.)
-            u += 1.;
-
-        while (u > 1.)
-            u -= 1.;
-
-        while (v < 0.)
-            v += 1.;
-
-        while (v > 1.)
-            v -= 1.;
-
-        size_t x = u * tex_w;
-        size_t y = v * tex_h;
-
-        return kd_map[tex_w * y + x];
-    }
-
     vec3_t* kd_map;
 };
 using dev_mat_t = DeviceMaterial;

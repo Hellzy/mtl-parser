@@ -1,3 +1,4 @@
+#include <iostream>
 #include "material.hh"
 
 __host__
@@ -9,12 +10,16 @@ DeviceMaterial::DeviceMaterial(const host_mat_t& m)
     tex_h = m.tex_h;
 
     cudaMalloc(&kd_map, sizeof(vec3_t) * m.kd_map.size());
-    cudaMemcpy(kd_map, m.kd_map.data(), m.kd_map.size(), cudaMemcpyHostToDevice);
+    cudaMemcpy(kd_map, m.kd_map.data(), m.kd_map.size() * sizeof(vec3_t), cudaMemcpyHostToDevice);
+
+    std::cout << "w*h = " << tex_w * tex_h << '\n'
+              << "vec.size() = " << m.kd_map.size() << '\n';
 }
 
 __host__
 DeviceMaterial::~DeviceMaterial()
 {
+    std::cout << "DTOR\n";
     cudaFree(kd_map);
 }
 
